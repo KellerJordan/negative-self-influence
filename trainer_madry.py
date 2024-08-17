@@ -89,13 +89,13 @@ if __name__ == '__main__':
     loader_all, loader_minus40 = get_loaders(aug=dict(flip=True, translate=2, cutout=4))
 
     os.makedirs('nets1_default', exist_ok=True)
-    for _ in tqdm(range(100)):
+    for _ in tqdm(range(500)):
         net = train(loader_all)
         outs = airbench.infer(net, loader_all)
         torch.save(outs, 'nets1_default/%s.pt' % uuid.uuid4())
 
     os.makedirs('nets1_minus_n40', exist_ok=True)
-    for _ in tqdm(range(100)):
+    for _ in tqdm(range(500)):
         net = train(loader_minus40)
         outs = airbench.infer(net, loader_all)
         torch.save(outs, 'nets1_minus_n40/%s.pt' % uuid.uuid4())
