@@ -49,6 +49,6 @@ Or equivalently, we can say that *adding* easy examples to the training set *dec
 
 ## Implications
 
-* This is a concrete phenomenon within finite-width neural network learning dynamics which cannot be recapitulated by NTK learning.
-* Influence functions cannot even approximate leave-one-out retraining, let alone leave-many-out.
+* There exists a concrete phenomenon within finite-width neural network learning dynamics which cannot be recapitulated by NTK learning.
+* Influence functions cannot even approximate leave-one-out retraining, let alone leave-many-out (because the Hessian is positive-semidefinite).
 * We cannot even honestly state that neural network learning minimizes loss!
