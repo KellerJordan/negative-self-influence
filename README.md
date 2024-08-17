@@ -39,10 +39,10 @@ The 40 specific examples are hardcoded. I chose their indices so that:
 * The first 20 indices are just `[0, ..., 19]`, which amounts to random examples (since CIFAR-10 is shuffled).
 * The last 20 indices are chosen to be easy examples which typically are learned very well (i.e., the trained model typically has high confidence on them).
 
-The point of the experiment is to determine the impact of removing those 40 examples, on the margins of those 40 examples.
+The point of the experiment is to determine the impact of removing these 40 examples, on their own margins.
 
 The result is as follows:
-* On the first 20 examples (random), removing them reduces their confidence (this is quite intuitive).
-* On the second 20 examples (easy), *removing* them *increases* their confidence (this is the new phenomenon).
+* For the *random* 20 examples, removing them tends to reduce their confidence (this is quite intuitive).
+* For the *easy* 20 examples, *removing* them tends to *increase* their confidence (this is the new phenomenon).
 
 Or equivalently, we can say that *adding* easy examples to the training set *decreases* the trained model's confidence on them. (Which is what's shown in the script output.)
