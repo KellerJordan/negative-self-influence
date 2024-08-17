@@ -1,6 +1,14 @@
 # negative-self-influence
 
-Demonstrating a phenomenon in deep learning
+## How to run
+
+To demonstrate the phenomenon, run:
+```
+python trainer_airbench.py
+python viz.py
+```
+
+This will produce an output like the following.
 
 ```
 The impact of *including* each of the 40 examples on its own correct-class margin was as follows...
@@ -17,3 +25,22 @@ Random mean: tensor(0.2463)
 Easy mean: tensor(-0.1496)
 ```
 
+## What's going on here?
+
+The script `trainer_airbench.py` (or `trainer_madry.py`, if you want to replicate it with a different training configuration) performs the following steps.
+
+1. Trains 500 models on the CIFAR-10 training set (as usual).
+2. Trains 500 models on the CIFAR-10 training set minus 40 specific examples.
+3. Saves the logit outputs of all of the models, on all of the training examples, to disk. (I.e., this would be two tensors of shape `(500, 50000, 10)`)
+
+The 40 specific examples are hardcoded. I chose their indices so that:
+* The first 20 indices are just `[0, ..., 19]`, which amounts to random examples (since CIFAR-10 is shuffled).
+* The last 20 indices are chosen to be easy examples which typically are learned very well (the trained model has high confidence on them).
+
+The point of the experiment is to determine the impact of removing those 40 examples, on the margins of those 40 examples.
+
+The result is as follows:
+* On the first 20 examples (random), removing them reduces their confidence (this is quite intuitive).
+* On the second 20 examples (easy), *removing* them *increases* their confidence (this is the new phenomenon).
+
+Or equivalently, we can say that *adding* easy examples to the training set *decreases* the trained model's confidence on them. (Which is what's shown in the script output.)
