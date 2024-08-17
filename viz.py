@@ -24,7 +24,7 @@ print('Computing the correct-class margins for each example which was ablated')
 mm1 = margin(outs1, train_loader.labels)
 mm2 = margin(outs2, train_loader.labels)
 
-print('The impact of *including* the example on its own correct-class margin was as follows...')
+print('The impact of *including* each example on its own correct-class margin was as follows...')
 diff = (mm1.mean(0) - mm2.mean(0))
 diff1 = diff[indices[:20]]
 diff2 = diff[indices[20:]]
