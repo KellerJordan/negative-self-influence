@@ -49,6 +49,6 @@ Or equivalently, we can say that *adding* easy examples to the training set *dec
 
 ## Implications
 
-* The NTK regime of training cannot recapitulate real dynamics (bc this phenomenon is incompatible with NTK learning).
+* The NTK regime of training cannot recapitulate normal neural network learning dynamics (bc this phenomenon is incompatible with NTK learning).
 * Influence functions cannot even approximate leave-one-out retraining, let alone leave-many-out.
 * We cannot even honestly state that neural network learning minimizes loss!
