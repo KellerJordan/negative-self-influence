@@ -86,7 +86,7 @@ def train(loader):
 
 if __name__ == '__main__':
 
-    loader_all, loader_minus40 = get_loaders(aug=dict(flip=True, translate=2, cutout=4))
+    loader_all, loader_minus40 = get_loaders(aug=dict(flip=True, translate=2, cutout=0))
 
     os.makedirs('nets1_default', exist_ok=True)
     for _ in tqdm(range(500)):
