@@ -21,15 +21,17 @@ outs1 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets2_default/*'))])
 outs2 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets2_minus_n40/*'))])
 
 print('Computing the correct-class margins for each example which was ablated')
-mm1 = margin(outs1, train_loader.labels).float()
-mm2 = margin(outs2, train_loader.labels).float()
+mm1 = margin(outs1, train_loader.labels).float().cpu()
+mm2 = margin(outs2, train_loader.labels).float().cpu()
 
-print('The impact of *including* each example on its own correct-class margin was as follows...')
+print('The impact of *including* each of the 40 examples on its own correct-class margin was as follows...')
 diff = (mm1.mean(0) - mm2.mean(0))
 diff1 = diff[indices[:20]]
 diff2 = diff[indices[20:]]
+print()
 print('Random examples:', diff1)
 print('Easy examples:', diff2)
+print()
 print('Random mean:', diff1.mean())
 print('Easy mean:', diff2.mean())
 
