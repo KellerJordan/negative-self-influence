@@ -17,8 +17,8 @@ indices = [45114, 47798, 43746, 49106, 47082, 44095, 49524, 41014, 49159, 44279,
 indices = list(range(30))+indices
 
 print('Loading the outputs produced by all the models that were trained...')
-outs1 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets1_default/*'))])
-outs2 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets1_minus_n40/*'))])
+outs1 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets2_default/*'))])
+outs2 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets2_minus_n40/*'))])
 
 print('Computing the correct-class margins for each example which was ablated')
 mm1 = margin(outs1, train_loader.labels)
