@@ -37,7 +37,7 @@ All of the runs of training are with identical hyperparameters (except the choic
 
 The 40 specific examples are hardcoded. I chose their indices so that:
 * The first 20 indices are just `[0, ..., 19]`, which amounts to random examples (since CIFAR-10 is shuffled).
-* The last 20 indices are chosen to be easy examples which typically are learned very well (the trained model has high confidence on them).
+* The last 20 indices are chosen to be easy examples which typically are learned very well (i.e., the trained model typically has high confidence on them).
 
 The point of the experiment is to determine the impact of removing those 40 examples, on the margins of those 40 examples.
 
