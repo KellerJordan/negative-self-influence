@@ -26,6 +26,10 @@ mm2 = margin(outs2, train_loader.labels)
 
 print('The impact of *including* the example on its own correct-class margin was as follows...')
 diff = (mm1.mean(0) - mm2.mean(0))
-print('Random examples:', diff[indices][:20])
-print('Easy exmaples:',   diff[indices][20:])
+diff1 = diff[indices[:20]]
+diff2 = diff[indices[20:]]
+print('Random examples:', diff1)
+print('Easy examples:', diff2)
+print('Random mean:', diff1.mean())
+print('Easy mean:', diff2.mean())
 
