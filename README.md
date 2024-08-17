@@ -27,7 +27,7 @@ Easy mean: tensor(-0.1496)
 
 ## What's going on here?
 
-The script `trainer_airbench.py` (or `trainer_madry.py`, if you want to replicate it with a different training configuration) performs the following steps.
+The script `trainer_airbench.py` (or `trainer_madry.py`, if you want to use a different training configuration) performs the following steps.
 
 1. Trains 500 models on the CIFAR-10 training set (as usual).
 2. Trains 500 models on the CIFAR-10 training set minus 40 specific examples.
