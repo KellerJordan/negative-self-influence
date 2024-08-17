@@ -46,3 +46,8 @@ The result is as follows:
 * For the *easy* 20 examples, *removing* them tends to *increase* their confidence (this is the new phenomenon).
 
 Or equivalently, we can say that *adding* easy examples to the training set *decreases* the trained model's confidence on them. (Which is what's shown in the script output.)
+
+## Implications
+
+* This is a phenomenon that the NTK regime of training cannot recapitulate.
+* This implies that influence functions cannot even approximate leave-one-out retraining, let alone leave-many-out.
