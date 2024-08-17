@@ -5,6 +5,7 @@ import torch
 import airbench
 from utils import get_loaders
 
+# Training script adapted from https://github.com/MadryLab/datamodels/blob/main/examples/cifar10/train_cifar.py
 import numpy as np
 import torch as ch
 import torch.nn.functional as F
