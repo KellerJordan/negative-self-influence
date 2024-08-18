@@ -72,13 +72,13 @@ The script `trainer_airbench.py` (or `trainer_madry.py`, if you want to use a di
 
 1. Trains 1000 models on the CIFAR-10 training set (as usual).
 2. Trains 1000 models on the CIFAR-10 training set, missing 40 specific examples (same number of steps of training, but the model just never sees those 40 examples).
-3. Saves the logit outputs of all of the models, on all of the training examples, to disk. (I.e., this would be two tensors of shape `(500, 50000, 10)`)
+3. Saves the logit outputs of all of the models, on all of the training examples, to disk. (I.e., two tensors of shape `(500, 50000, 10)`)
 
 All of the runs of training are with otherwise identical hyperparameters.
 
 The 40 specific examples are hardcoded. I chose their indices so that:
 * The first 20 indices are just `[0, ..., 19]`, which amounts to random examples (since CIFAR-10 is shuffled).
-* The last 20 indices are chosen to be easy examples which typically are learned very well (i.e., the trained model typically has high confidence on them).
+* The last 20 indices are chosen to be easy examples which are known to have negative self-influence for the `airbench` trainer.
 
 The point of the experiment is to determine the impact of removing these 40 examples, on their own margins.
 
