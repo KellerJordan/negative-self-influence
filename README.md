@@ -74,7 +74,7 @@ The script `trainer_airbench.py` (or `trainer_madry.py`, if you want to use a di
 2. Trains 1000 models on the CIFAR-10 training set, missing 40 specific examples (same number of steps of training, but the model just never sees those 40 examples).
 3. Saves the logit outputs of all of the models, on all of the training examples, to disk. (I.e., this would be two tensors of shape `(500, 50000, 10)`)
 
-All of the runs of training are with identical hyperparameters (except the choice of training dataset, of course).
+All of the runs of training are with otherwise identical hyperparameters.
 
 The 40 specific examples are hardcoded. I chose their indices so that:
 * The first 20 indices are just `[0, ..., 19]`, which amounts to random examples (since CIFAR-10 is shuffled).
