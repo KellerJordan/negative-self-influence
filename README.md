@@ -2,7 +2,7 @@
 
 This repository demonstrates a newly observed phenomenon in deep learning:
 
-*Adding easy examples to the training set tends to **increase** the retrained model's loss on them.*
+*Adding an easy examples to the training set tends to cause the retrained model to become **less** confident on it.*
 
 ## How to run
 
