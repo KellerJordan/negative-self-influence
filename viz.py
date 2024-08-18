@@ -1,7 +1,9 @@
+import sys
 import torch
 import matplotlib.pyplot as plt
 import glob
 from tqdm import tqdm
+import scipy.stats
 import airbench
 
 def margin(outs, labs):
@@ -14,24 +16,35 @@ def margin(outs, labs):
 train_loader = airbench.CifarLoader('/tmp/cifar10', train=True)
 indices = [45114, 47798, 43746, 49106, 47082, 44095, 49524, 41014, 49159, 44279,
            45927, 40141, 47731, 46440, 49015, 49690, 46836, 43512, 43189, 49320]
-indices = list(range(30))+indices
+indices = list(range(20))+indices
 
+i = 2
+if len(sys.argv) == 2:
+    i = int(sys.argv[1])
 print('Loading the outputs produced by all the models that were trained...')
-outs1 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets2_default/*'))])
-outs2 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets2_minus_n40/*'))])
+outs1 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets%d_default/*' % i))])
+outs2 = torch.stack([torch.load(p) for p in tqdm(glob.glob('nets%d_minus_n40/*' % i))])
 
 print('Computing the correct-class margins for each example which was ablated')
 mm1 = margin(outs1, train_loader.labels).float().cpu()
 mm2 = margin(outs2, train_loader.labels).float().cpu()
-
-print('The impact of *including* each of the 40 examples on its own correct-class margin was as follows...')
 diff = (mm1.mean(0) - mm2.mean(0))
-diff1 = diff[indices[:20]]
-diff2 = diff[indices[20:]]
+std = (mm1.var(0) / len(mm1) + mm2.var(0) / len(mm2))**0.5
+zz = (diff / std) # z-score of each difference
+
+print('Example index\t   margin  \t\tself-influence\t\t\tp-value')
+print('\t\twith\twithout')
 print()
-print('Random examples:', diff1)
-print('Easy examples:', diff2)
-print()
-print('Random mean:', diff1.mean())
-print('Easy mean:', diff2.mean())
+print('Random examples:')
+for j in range(40):
+    i = indices[j]
+    z_score = zz[i].item()
+    p_value = scipy.stats.norm.sf(abs(z_score)) * 2
+    print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f' % (i, mm2.mean(0)[i], mm1.mean(0)[i], diff[i], p_value))
+    if j == 19:
+        print('Average:\t\t\t\t%+.3f' % diff[indices[:20]].mean())
+        print()
+        print('Easy examples:')
+    if j == 39:
+        print('Average:\t\t\t\t%+.3f' % diff[indices[20:]].mean())
 
