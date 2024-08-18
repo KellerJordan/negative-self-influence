@@ -84,7 +84,7 @@ Presumably because doing 1,000 trainings to get statistical significance on the 
 
 ## Appendix
 
-What happens if we try with the Madry trainer instead (which is quite different, within the space of CIFAR-10 trainings at least)?
+What happens if we try with the Madry trainer instead (which is quite different, within the space of CIFAR-10 trainings)?
 
 Here's the output I got from doing so with 1000 total runs.
 
@@ -112,5 +112,5 @@ Easy examples:
 Average:                                -0.385
 ```
 
-Looks like the same thing, so the phenomenon is at least not just specific to `airbench` trainings.
+Looks like the same thing, so the phenomenon is not just specific to `airbench` trainings.
 
