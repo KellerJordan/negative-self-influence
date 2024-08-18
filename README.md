@@ -87,7 +87,7 @@ Presumably because doing 1,000 trainings to get statistical significance on the 
 
 What happens if we try with the Madry trainer instead (which is quite different, within the space of CIFAR-10 trainings)?
 
-Here's the output I got from doing so with 1000 total runs.
+Here's the output I got from doing so with 3000 total runs.
 
 ```
 Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
@@ -96,21 +96,22 @@ Example index      margin               self-influence                  p-value
                 with    without
 
 Random examples:
-0               5.265   6.253           +0.988                          0.0000
-1               13.491  13.228          -0.263                          0.0082
-2               8.977   9.326           +0.349                          0.0005
-13              4.495   5.601           +1.106                          0.0000
-16              4.519   4.822           +0.303                          0.0005
-17              -0.161  1.784           +1.945                          0.0000
-18              3.675   5.075           +1.400                          0.0000
-19              4.257   5.565           +1.308                          0.0000
-Average:                                +0.892
+0               6.310   5.130           +1.180                          0.0000
+2               9.396   9.050           +0.346                          0.0000
+8               8.463   8.242           +0.221                          0.0007
+11              7.629   7.475           +0.154                          0.0099
+13              5.706   4.569           +1.137                          0.0000
+16              4.918   4.525           +0.393                          0.0000
+17              1.805   -0.132          +1.937                          0.0000
+18              5.068   3.697           +1.372                          0.0000
+19              5.511   4.338           +1.173                          0.0000
+Average:                                +0.879
 
 Easy examples:
-47798           21.260  20.867          -0.394                          0.0071
-47731           20.137  19.710          -0.428                          0.0018
-49015           21.050  20.716          -0.334                          0.0068
-Average:                                -0.385
+47798           20.914  21.166          -0.252                          0.0044
+43746           21.084  21.393          -0.309                          0.0007
+47731           19.915  20.190          -0.275                          0.0011
+Average:                                -0.279
 ```
 
 Looks like the same thing, so the phenomenon is not just specific to `airbench` trainings.
