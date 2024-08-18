@@ -90,7 +90,7 @@ Or equivalently, we can say that *adding* easy examples to the training set *dec
 
 ## Why wasn't this phenomenon observed before?
 
-Presumably because doing 1,000 trainings to get staistical significance on the differences is a pain in the butt.
+Presumably because doing 1,000 trainings to get statistical significance on the differences is a pain in the butt.
 
 ## Implications
 
