@@ -90,27 +90,28 @@ What happens if we try with the Madry trainer instead (which is quite different,
 Here's the output I got from doing so with 1000 total runs.
 
 ```
-Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
+Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.02):
 
 Example index      margin               self-influence                  p-value
                 with    without
 
 Random examples:
-0               5.265   6.253           +0.988                          0.0000
-1               13.491  13.228          -0.263                          0.0082
-2               8.977   9.326           +0.349                          0.0005
-13              4.495   5.601           +1.106                          0.0000
-16              4.519   4.822           +0.303                          0.0005
-17              -0.161  1.784           +1.945                          0.0000
-18              3.675   5.075           +1.400                          0.0000
-19              4.257   5.565           +1.308                          0.0000
-Average:                                +0.892
+0               6.325   5.265           +1.060                          0.0000
+2               9.321   8.977           +0.344                          0.0000
+6               9.649   9.363           +0.286                          0.0017
+10              6.691   6.527           +0.164                          0.0153
+13              5.700   4.495           +1.205                          0.0000
+16              4.907   4.519           +0.388                          0.0000
+17              1.809   -0.161          +1.970                          0.0000
+18              5.083   3.675           +1.408                          0.0000
+19              5.520   4.257           +1.263                          0.0000
+Average:                                +0.899
 
 Easy examples:
-47798           21.260  20.867          -0.394                          0.0071
-47731           20.137  19.710          -0.428                          0.0018
-49015           21.050  20.716          -0.334                          0.0068
-Average:                                -0.385
+47798           20.960  21.260          -0.301                          0.0143
+43746           21.101  21.433          -0.333                          0.0078
+49015           20.807  21.050          -0.243                          0.0170
+Average:                                -0.292
 ```
 
 Looks like the same thing, so the phenomenon is not just specific to `airbench` trainings.
