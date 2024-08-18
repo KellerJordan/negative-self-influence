@@ -55,7 +55,7 @@ for j in range(40):
     if show_sig_only:
         if sig:
             print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f' % (i, mm2.mean(0)[i], mm1.mean(0)[i], diff[i], p_value))
-        res.append(diff[i].item())
+            res.append(diff[i].item())
     else:
         print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f\t%s' % (i, mm2.mean(0)[i], mm1.mean(0)[i], diff[i], p_value,
               'yes' if sig else 'no'))
