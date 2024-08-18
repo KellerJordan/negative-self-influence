@@ -1,6 +1,6 @@
 # negative-self-influence
 
-This repository demonstrates a phenomenon in deep learning:
+This repository demonstrates a newly observed phenomenon in deep learning:
 
 *Adding easy examples to the training set tends to **increase** the retrained model's loss on them.*
 
