@@ -82,3 +82,35 @@ Presumably because doing 1,000 trainings to get statistical significance on the 
 * Influence functions cannot even approximate leave-one-out retraining, let alone leave-many-out (because the Hessian is positive-semidefinite).
 * We cannot even honestly state that neural network learning minimizes loss!
 
+## Appendix
+
+What happens if we try with the Madry trainer instead (which is quite different, within the space of CIFAR-10 trainings at least)?
+
+Here's the output I got from doing so with 1000 total runs.
+
+```
+Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
+
+Example index      margin               self-influence                  p-value
+                with    without
+
+Random examples:
+0               5.265   6.253           +0.988                          0.0000
+1               13.491  13.228          -0.263                          0.0082
+2               8.977   9.326           +0.349                          0.0005
+13              4.495   5.601           +1.106                          0.0000
+16              4.519   4.822           +0.303                          0.0005
+17              -0.161  1.784           +1.945                          0.0000
+18              3.675   5.075           +1.400                          0.0000
+19              4.257   5.565           +1.308                          0.0000
+Average:                                +0.892
+
+Easy examples:
+47798           21.260  20.867          -0.394                          0.0071
+47731           20.137  19.710          -0.428                          0.0018
+49015           21.050  20.716          -0.334                          0.0068
+Average:                                -0.385
+```
+
+Looks like the same thing, so the phenomenon is at least not just specific to `airbench` trainings.
+
