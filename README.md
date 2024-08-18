@@ -4,7 +4,14 @@ This repository demonstrates a newly observed phenomenon in deep learning:
 
 *Adding an easy example to the training set tends to cause the retrained model to become **less** confident on it.*
 
-## How to run
+## Implications
+
+* There exists a concrete phenomenon within finite-width neural network learning dynamics which cannot be recapitulated by NTK learning. (Related work [Allen-Zhu & Li (2020)](https://arxiv.org/abs/2012.09816))
+* Influence functions cannot even approximate leave-one-out retraining, let alone leave-many-out (because the Hessian is positive-semidefinite). (Related work [Bae et al. (2022)](https://arxiv.org/abs/2209.05364))
+* Neural network learning does not minimize loss. (This is new)
+
+
+## How to run the experiment
 
 To demonstrate the phenomenon, run:
 ```
@@ -75,12 +82,6 @@ Or equivalently, we can say that *adding* easy examples to the training set *dec
 ## Why wasn't this phenomenon observed before?
 
 Presumably because doing 1,000 trainings to get statistical significance on the differences is a pain in the butt.
-
-## Implications
-
-* There exists a concrete phenomenon within finite-width neural network learning dynamics which cannot be recapitulated by NTK learning. (Related work [Allen-Zhu & Li (2020)](https://arxiv.org/abs/2012.09816))
-* Influence functions cannot even approximate leave-one-out retraining, let alone leave-many-out (because the Hessian is positive-semidefinite). (Related work [Bae et al. (2022)](https://arxiv.org/abs/2209.05364))
-* Neural network learning does not minimize loss. (This is new)
 
 ## Appendix
 
