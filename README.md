@@ -88,8 +88,13 @@ The result is as follows:
 
 Or equivalently, we can say that *adding* easy examples to the training set *decreases* the trained model's confidence on them. (Which is what's shown in the script output.)
 
+## Why wasn't this phenomenon observed before?
+
+Presumably because doing 1,000 trainings to get staistical significance on the differences is a pain in the butt.
+
 ## Implications
 
 * There exists a concrete phenomenon within finite-width neural network learning dynamics which cannot be recapitulated by NTK learning.
 * Influence functions cannot even approximate leave-one-out retraining, let alone leave-many-out (because the Hessian is positive-semidefinite).
 * We cannot even honestly state that neural network learning minimizes loss!
+
