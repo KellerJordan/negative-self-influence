@@ -1,3 +1,4 @@
+# in case you're GPU-rich
 CUDA_VISIBLE_DEVICES=0 python $1 &
 CUDA_VISIBLE_DEVICES=1 python $1 &
 CUDA_VISIBLE_DEVICES=2 python $1 &
