@@ -87,7 +87,7 @@ Presumably because doing 1,000 trainings to get statistical significance on the 
 
 What happens if we try with the Madry trainer instead (which is quite different, within the space of CIFAR-10 trainings)?
 
-Here's the output I got from doing so with 3000 total runs.
+Here's the output I got from doing so with 4000 total runs.
 
 ```
 Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
@@ -96,23 +96,55 @@ Example index      margin               self-influence                  p-value
                 with    without
 
 Random examples:
-0               6.310   5.130           +1.180                          0.0000
-2               9.396   9.050           +0.346                          0.0000
-8               8.463   8.242           +0.221                          0.0007
-11              7.629   7.475           +0.154                          0.0099
-13              5.706   4.569           +1.137                          0.0000
-16              4.918   4.525           +0.393                          0.0000
-17              1.805   -0.132          +1.937                          0.0000
-18              5.068   3.697           +1.372                          0.0000
-19              5.511   4.338           +1.173                          0.0000
-Average:                                +0.879
+0               6.310   5.088           +1.222                          0.0000
+2               9.396   9.088           +0.308                          0.0000
+8               8.463   8.235           +0.228                          0.0000
+11              7.629   7.475           +0.153                          0.0016
+13              5.706   4.521           +1.185                          0.0000
+16              4.918   4.543           +0.375                          0.0000
+17              1.805   -0.078          +1.882                          0.0000
+18              5.068   3.743           +1.325                          0.0000
+19              5.511   4.359           +1.152                          0.0000
+Average:                                +0.870
 
 Easy examples:
-47798           20.914  21.166          -0.252                          0.0044
-43746           21.084  21.393          -0.309                          0.0007
-47731           19.915  20.190          -0.275                          0.0011
-Average:                                -0.279
+47798           20.914  21.178          -0.263                          0.0003
+43746           21.084  21.401          -0.317                          0.0000
+47731           19.915  20.149          -0.234                          0.0005
+Average:                                -0.271
 ```
 
 Looks like the same thing, so the phenomenon is not just specific to `airbench` trainings.
+
+And here's another run with the Madry trainer, with cutout augmentation turned off.
+```
+Computing the correct-class margins for each of the 40 examples which were ablated
+
+Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
+
+Example index      margin               self-influence                  p-value
+                with    without
+
+Random examples:
+0               5.260   6.472           +1.212                          0.0000
+2               9.116   9.438           +0.322                          0.0000
+5               8.660   8.801           +0.141                          0.0026
+8               8.276   8.452           +0.176                          0.0032
+13              4.225   5.368           +1.143                          0.0000
+16              3.756   4.388           +0.632                          0.0000
+17              -0.177  2.149           +2.326                          0.0000
+18              3.965   5.260           +1.295                          0.0000
+19              4.256   5.499           +1.243                          0.0000
+Average:                                +0.943
+
+Easy examples:
+47798           21.559  21.239          -0.320                          0.0002
+47082           19.311  18.983          -0.328                          0.0004
+44095           18.063  17.718          -0.345                          0.0000
+41014           26.358  26.110          -0.248                          0.0006
+47731           20.699  20.465          -0.234                          0.0037
+Average:                                -0.295
+```
+
+Again the same thing.
 

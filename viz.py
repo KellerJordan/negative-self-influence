@@ -1,3 +1,4 @@
+import os
 import sys
 import torch
 import matplotlib.pyplot as plt
@@ -7,6 +8,7 @@ import scipy.stats
 import airbench
 
 show_sig_only = True
+#show_sig_only = False
 
 def margin(outs, labs):
     ind = torch.arange(len(labs), device=labs.device)
@@ -36,7 +38,8 @@ zz = (diff / std) # z-score of each difference
 
 print()
 if show_sig_only:
-    print('Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):')
+    sig_threshold = 0.01
+    print('Showing examples whose estimated self-influence is statistically-significantly different from zero (p < %.2f):' % sig_threshold)
     print()
 
 if show_sig_only:
@@ -51,13 +54,13 @@ for j in range(40):
     i = indices[j]
     z_score = zz[i].item()
     p_value = scipy.stats.norm.sf(abs(z_score)) * 2
-    sig = (p_value < 0.01)
+    sig = (p_value < sig_threshold)
     if show_sig_only:
         if sig:
-            print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f' % (i, mm2.mean(0)[i], mm1.mean(0)[i], diff[i], p_value))
+            print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f' % (i, mm1.mean(0)[i], mm2.mean(0)[i], diff[i], p_value))
             res.append(diff[i].item())
     else:
-        print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f\t%s' % (i, mm2.mean(0)[i], mm1.mean(0)[i], diff[i], p_value,
+        print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f\t%s' % (i, mm1.mean(0)[i], mm2.mean(0)[i], diff[i], p_value,
               'yes' if sig else 'no'))
         res.append(diff[i].item())
     if j == 19:
