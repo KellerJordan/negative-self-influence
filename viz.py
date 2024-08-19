@@ -42,10 +42,7 @@ if show_sig_only:
     print('Showing examples whose estimated self-influence is statistically-significantly different from zero (p < %.2f):' % sig_threshold)
     print()
 
-if show_sig_only:
-    print('Example index\t   margin  \t\tself-influence\t\t\tp-value')
-else:
-    print('Example index\t   margin  \t\tself-influence\t\t\tp-value\tsignificant? (p < 0.01)')
+print('Example index\t   margin  \t\tself-influence\t\t\tp-value')
 print('\t\twith\twithout')
 print()
 print('Random examples:')
@@ -54,14 +51,8 @@ for j in range(40):
     i = indices[j]
     z_score = zz[i].item()
     p_value = scipy.stats.norm.sf(abs(z_score)) * 2
-    sig = (p_value < sig_threshold)
-    if show_sig_only:
-        if sig:
-            print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f' % (i, mm1.mean(0)[i], mm2.mean(0)[i], diff[i], p_value))
-            res.append(diff[i].item())
-    else:
-        print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f\t%s' % (i, mm1.mean(0)[i], mm2.mean(0)[i], diff[i], p_value,
-              'yes' if sig else 'no'))
+    if (not show_sig_only) or (show_sig_only and p_value < sig_threshold):
+        print('%d\t\t%.3f\t%.3f\t\t%+.3f\t\t\t\t%.4f' % (i, mm1.mean(0)[i], mm2.mean(0)[i], diff[i], p_value))
         res.append(diff[i].item())
     if j == 19:
         print('Average:\t\t\t\t%+.3f' % torch.tensor(res).mean())
