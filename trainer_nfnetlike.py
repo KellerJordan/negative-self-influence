@@ -230,7 +230,7 @@ def train(train_loader):
 
     filter_params = [p for p in model.parameters() if len(p.shape) == 4 and p.requires_grad]
     other_params = [p for p in model.parameters() if len(p.shape) < 4 and p.requires_grad]
-    optimizer1 = RenormSGD(filter_params, lr=0.03, momentum=hyp['opt']['momentum'], nesterov=True)
+    optimizer1 = RenormSGD(filter_params, lr=0.025, momentum=hyp['opt']['momentum'], nesterov=True)
     optimizer2 = torch.optim.SGD(other_params, lr=2.5 / hyp['opt']['batch_size'],
                                  momentum=hyp['opt']['momentum'], nesterov=True)
     def get_lr(step):
@@ -238,7 +238,7 @@ def train(train_loader):
         warmdown_steps = total_train_steps - warmup_steps
         if step < warmup_steps:
             frac = step / warmup_steps
-            return 0.2 * (1 - frac) + 1.0 * frac
+            return 0.0 * (1 - frac) + 1.0 * frac
         else:
             frac = (step - warmup_steps) / warmdown_steps
             return (1 - frac)
@@ -273,15 +273,15 @@ if __name__ == '__main__':
 
     loader_all, loader_minus40 = get_loaders(batch_size=500)
 
-    os.makedirs('nets9_default', exist_ok=True)
-    for _ in tqdm(range(10)):
+    os.makedirs('nets8_default', exist_ok=True)
+    for _ in tqdm(range(1000-100)):
         net = train(loader_all)
         outs = airbench.infer(net, loader_all)
-        torch.save(outs, 'nets9_default/%s.pt' % uuid.uuid4())
+        torch.save(outs, 'nets8_default/%s.pt' % uuid.uuid4())
 
-    os.makedirs('nets9_minus_n40', exist_ok=True)
-    for _ in tqdm(range(10)):
+    os.makedirs('nets8_minus_n40', exist_ok=True)
+    for _ in tqdm(range(1000-100)):
         net = train(loader_minus40)
         outs = airbench.infer(net, loader_all)
-        torch.save(outs, 'nets9_minus_n40/%s.pt' % uuid.uuid4())
+        torch.save(outs, 'nets8_minus_n40/%s.pt' % uuid.uuid4())
 
