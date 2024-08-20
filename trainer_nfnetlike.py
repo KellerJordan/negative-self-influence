@@ -1,10 +1,3 @@
-import os
-from tqdm import tqdm
-import uuid
-import torch
-import airbench
-from utils import get_loaders
-
 #############################################
 #            Setup/Hyperparameters          #
 #############################################
@@ -268,6 +261,13 @@ def train(train_loader):
                 break
 
     return model
+
+import os
+from tqdm import tqdm
+import uuid
+import torch
+import airbench
+from utils import get_loaders
 
 if __name__ == '__main__':
 
