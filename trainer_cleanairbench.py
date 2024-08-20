@@ -20,7 +20,6 @@ hyp = {
         'momentum': 0.85,
         'weight_decay': 0.015,  # weight decay per 1024 examples (decoupled from learning rate)
         'bias_scaler': 64.0,    # scales up learning rate (but not weight decay) for BatchNorm biases
-        'label_smoothing': 0.0,
     },
     'aug': {
         'flip': True,
@@ -158,7 +157,6 @@ def train(train_loader):
     lr_biases = lr * hyp['opt']['bias_scaler']
 
     model = make_net()
-    loss_fn = nn.CrossEntropyLoss(label_smoothing=hyp['opt']['label_smoothing'], reduction='none')
     total_train_steps = epochs * len(train_loader)
 
     norm_biases = [p for k, p in model.named_parameters() if 'norm' in k]
@@ -185,7 +183,7 @@ def train(train_loader):
         for inputs, labels in train_loader:
 
             outputs = model(inputs)
-            loss = loss_fn(outputs, labels).sum()
+            loss = F.cross_entropy(outputs, labels).sum()
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
             optimizer.step()

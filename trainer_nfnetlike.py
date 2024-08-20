@@ -17,7 +17,6 @@ hyp = {
         'epochs': 20,
         'momentum': 0.9,
         'batch_size': 500,
-        'label_smoothing': 0.0,
     },
     'aug': {
         'flip': True,
@@ -30,7 +29,6 @@ hyp = {
             'block3': 256,
         },
         'scaling_factor': 1/9,
-        'tta_level': 2,
     },
 }
 
@@ -210,9 +208,9 @@ def make_net():
     net = net.to(memory_format=torch.channels_last)
     return net
 
-#############################################
-#          Training and Evaluation          #
-#############################################
+############################################
+#          Training and Inference          #
+############################################
 
 def train(train_loader):
 
@@ -246,8 +244,7 @@ def train(train_loader):
         for inputs, labels in train_loader:
 
             outputs = model(inputs)
-            loss = F.cross_entropy(outputs, labels, reduction='none',
-                                   label_smoothing=hyp['opt']['label_smoothing']).sum()
+            loss = F.cross_entropy(outputs, labels, reduction='none').sum()
             model.zero_grad(set_to_none=True)
             loss.backward()
             
@@ -273,15 +270,15 @@ if __name__ == '__main__':
 
     loader_all, loader_minus40 = get_loaders(batch_size=500)
 
-    os.makedirs('nets8_default', exist_ok=True)
-    for _ in tqdm(range(1000-100)):
+    os.makedirs('nets13_default', exist_ok=True)
+    for _ in tqdm(range(1000)):
         net = train(loader_all)
         outs = airbench.infer(net, loader_all)
-        torch.save(outs, 'nets8_default/%s.pt' % uuid.uuid4())
+        torch.save(outs, 'nets13_default/%s.pt' % uuid.uuid4())
 
-    os.makedirs('nets8_minus_n40', exist_ok=True)
-    for _ in tqdm(range(1000-100)):
+    os.makedirs('nets13_minus_n40', exist_ok=True)
+    for _ in tqdm(range(1000)):
         net = train(loader_minus40)
         outs = airbench.infer(net, loader_all)
-        torch.save(outs, 'nets8_minus_n40/%s.pt' % uuid.uuid4())
+        torch.save(outs, 'nets13_minus_n40/%s.pt' % uuid.uuid4())
 
