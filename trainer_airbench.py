@@ -12,7 +12,7 @@ from utils import get_loaders
 
 if __name__ == '__main__':
 
-    loader_all, loader_minus40 = get_loaders()
+    loader_all, loader_minus40 = get_loaders(1000)
 
     os.makedirs('nets10_default', exist_ok=True)
     for _ in tqdm(range(1000)):
