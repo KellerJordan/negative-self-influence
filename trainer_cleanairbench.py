@@ -183,7 +183,7 @@ def train(train_loader):
         for inputs, labels in train_loader:
 
             outputs = model(inputs)
-            loss = F.cross_entropy(outputs, labels).sum()
+            loss = F.cross_entropy(outputs, labels, reduction='none').sum()
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
             optimizer.step()
