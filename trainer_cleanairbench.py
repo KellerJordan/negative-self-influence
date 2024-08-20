@@ -16,11 +16,11 @@ hyp = {
     'opt': {
         'epochs': 10,
         'batch_size': 1000,
-        'lr': 10.0,             # learning rate per 1024 examples -- 5.0 is optimal with no smoothing, 10.0 with smoothing.
+        'lr': 5.0,             # learning rate per 1024 examples -- 5.0 is optimal with no smoothing, 10.0 with smoothing.
         'momentum': 0.85,
         'weight_decay': 0.015,  # weight decay per 1024 examples (decoupled from learning rate)
         'bias_scaler': 64.0,    # scales up learning rate (but not weight decay) for BatchNorm biases
-        'label_smoothing': 0.2,
+        'label_smoothing': 0.0,
     },
     'aug': {
         'flip': True,
@@ -33,7 +33,6 @@ hyp = {
             'block3': 256,
         },
         'scaling_factor': 1/9,
-        'tta_level': 2,
     },
 }
 
