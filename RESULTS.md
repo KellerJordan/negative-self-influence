@@ -103,3 +103,30 @@ Easy examples:
 Average:                                -0.206
 ```
 
+`python viz.py 13`
+```
+Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
+
+Example index      margin               self-influence                  p-value
+                with    without
+
+Random examples:
+0               4.225   3.848           +0.378                          0.0000
+2               5.447   5.208           +0.239                          0.0000
+4               6.612   6.703           -0.091                          0.0075
+8               4.493   4.320           +0.173                          0.0003
+13              4.094   3.621           +0.473                          0.0000
+16              2.652   2.377           +0.274                          0.0000
+17              1.028   0.158           +0.870                          0.0000
+18              3.528   2.878           +0.649                          0.0000
+19              4.005   3.601           +0.404                          0.0000
+Average:                                +0.374
+
+Easy examples:
+47798           10.375  10.687          -0.312                          0.0000
+43746           9.729   10.001          -0.272                          0.0000
+41014           13.480  13.607          -0.128                          0.0075
+49690           11.626  11.789          -0.162                          0.0007
+Average:                                -0.218
+```
+
