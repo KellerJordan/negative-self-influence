@@ -1,6 +1,32 @@
 # Results
 
-`python viz.py 10`
+`python viz.py 1` (madry trainer)
+```
+Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
+
+Example index      margin               self-influence                  p-value
+                with    without
+
+Random examples:
+0               6.310   5.088           +1.222                          0.0000
+2               9.396   9.088           +0.308                          0.0000
+8               8.463   8.235           +0.228                          0.0000
+11              7.629   7.475           +0.153                          0.0016
+13              5.706   4.521           +1.185                          0.0000
+16              4.918   4.543           +0.375                          0.0000
+17              1.805   -0.078          +1.882                          0.0000
+18              5.068   3.743           +1.325                          0.0000
+19              5.511   4.359           +1.152                          0.0000
+Average:                                +0.870
+
+Easy examples:
+47798           20.914  21.178          -0.263                          0.0003
+43746           21.084  21.401          -0.317                          0.0000
+47731           19.915  20.149          -0.234                          0.0005
+Average:                                -0.271
+```
+
+`python viz.py 10` (airbench94)
 ```
 Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
 
@@ -37,7 +63,7 @@ Easy examples:
 Average:                                -0.237
 ```
 
-`python viz.py 11`
+`python viz.py 11` (clean_airbench94)
 ```
 Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
 
