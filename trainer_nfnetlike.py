@@ -15,8 +15,8 @@ torch.backends.cudnn.benchmark = True
 hyp = {
     'opt': {
         'epochs': 20,
-        'momentum': 0.9,
         'batch_size': 500,
+        'momentum': 0.9,
     },
     'aug': {
         'flip': True,
@@ -270,15 +270,15 @@ if __name__ == '__main__':
 
     loader_all, loader_minus40 = get_loaders(batch_size=500)
 
-    os.makedirs('nets13_default', exist_ok=True)
+    os.makedirs('nets20_default', exist_ok=True)
     for _ in tqdm(range(1000)):
         net = train(loader_all)
         outs = airbench.infer(net, loader_all)
-        torch.save(outs, 'nets13_default/%s.pt' % uuid.uuid4())
+        torch.save(outs, 'nets20_default/%s.pt' % uuid.uuid4())
 
-    os.makedirs('nets13_minus_n40', exist_ok=True)
+    os.makedirs('nets20_minus_n40', exist_ok=True)
     for _ in tqdm(range(1000)):
         net = train(loader_minus40)
         outs = airbench.infer(net, loader_all)
-        torch.save(outs, 'nets13_minus_n40/%s.pt' % uuid.uuid4())
+        torch.save(outs, 'nets20_minus_n40/%s.pt' % uuid.uuid4())
 
