@@ -156,7 +156,7 @@ Easy examples:
 Average:                                -0.218
 ```
 
-`python viz.py 14`
+`python viz.py 14` (epochs=20, bs=500, momentum=0.9, no bias scaler, RenormSGD)
 ```
 Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
 
