@@ -199,3 +199,26 @@ Easy examples:
 Average:                                -0.258
 ```
 
+`python viz.py 15` (rm the BatchNorms; 1.5% lower accuracy)
+```
+Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
+
+Example index      margin               self-influence                  p-value
+                with    without
+
+Random examples:
+0               8.100   7.122           +0.977                          0.0000
+2               10.091  9.899           +0.192                          0.0063
+13              8.798   7.767           +1.030                          0.0000
+15              9.673   9.497           +0.175                          0.0037
+17              2.166   -0.084          +2.249                          0.0000
+18              5.575   4.273           +1.302                          0.0000
+19              7.435   5.955           +1.481                          0.0000
+Average:                                +1.058
+
+Easy examples:
+47082           18.076  17.757          +0.320                          0.0009
+46836           30.443  30.158          +0.285                          0.0052
+Average:                                +0.302
+```
+
