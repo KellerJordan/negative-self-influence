@@ -101,7 +101,7 @@ Average:                                -0.233
 ```
 
 
-`python viz.py 12`
+`python viz.py 12` (remove bias scaler)
 ```
 Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
 
@@ -129,7 +129,7 @@ Easy examples:
 Average:                                -0.206
 ```
 
-`python viz.py 13`
+`python viz.py 13` (switch to RenormSGD)
 ```
 Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
 
