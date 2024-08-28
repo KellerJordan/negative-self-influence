@@ -251,3 +251,25 @@ Easy examples:
 Average:                                -0.016
 ```
 
+`python viz.py 18` (LayerNorm with better params)
+```
+Showing examples whose estimated self-influence is statistically-significantly different from zero (p < 0.01):
+
+Example index      margin               self-influence                  p-value
+                with    without
+
+Random examples:
+0               4.844   3.827           +1.016                          0.0000
+13              5.844   5.311           +0.533                          0.0000
+15              5.618   5.474           +0.144                          0.0003
+16              3.535   2.892           +0.643                          0.0000
+17              2.255   0.442           +1.813                          0.0000
+18              4.215   3.336           +0.878                          0.0000
+19              5.404   4.840           +0.563                          0.0000
+Average:                                +0.799
+
+Easy examples:
+46440           11.045  10.995          +0.051                          0.0089
+Average:                                +0.051
+```
+
